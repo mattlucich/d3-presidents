@@ -1,0 +1,69 @@
+<html>
+
+<!--
+    python3 -m http.server 
+    http://0.0.0.0:8000/js_in_webpage.html
+-->
+
+<head><title>Data 608: Module 5</title></head>
+
+<body>
+
+<h1>Data 608: Module 5</h1>
+<h2>Matthew Lucich</h2>
+
+<script type="text/javascript">
+
+function reverseString(str) {
+    let inputWord = document.getElementById("word").value;
+    let reversedWord = inputWord.split("").reverse().join("");
+    document.getElementById("outputWord").innerHTML = reversedWord;
+}
+
+function getMultiples(str) {
+    let numInput = parseInt(document.getElementById("num").value);
+    const numMultiples = Array.from({length: 20}, (_, i) => i + 1);
+    let calcMultiples = numMultiples.map(x => numInput * x);
+    return calcMultiples;
+}
+
+function makeMultiplesTable(myArray) {
+    let calcMultiples = getMultiples();
+    let result = "<table border=1>";
+    k = 0;
+    for(let i=0; i<(calcMultiples.length/4); i++) {
+        result += "<tr>";
+        for(let j=0; j<(calcMultiples.length/5); j++){
+            result += "<td>"+calcMultiples[k]+"</td>";
+            k++;
+        }
+        result += "</tr>";
+    }
+    result += "</table>";
+    document.getElementById("outputNum").innerHTML = result;
+}
+
+
+</script>
+
+<p>
+<form>
+    <input id="word" type="text" size="20">
+    <input type="button" value="Reverse" onClick="reverseString();">
+</form>
+</p>
+
+<p id="outputWord"></p>
+
+
+<p>
+<form>
+    <input id="num" type="text" size="20">
+    <input type="button" value="Get multiples" onClick="makeMultiplesTable();">
+</form>
+</p>
+
+<p id="outputNum"></p>
+
+</body>
+</html>
